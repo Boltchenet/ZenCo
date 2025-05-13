@@ -3,32 +3,38 @@ document.addEventListener('DOMContentLoaded', function() {
         { 
             title: "Sushi Palace", 
             description: "Site vitrine avec menu numérique", 
-            image: "assets/images/portfolio/sushi-palace.jpg" 
+            color: "#FF6B6B",
+            link: "https://sushi-palace-example.com" 
         },
         { 
             title: "Noodle Bar", 
             description: "Site e-commerce pour plats à emporter", 
-            image: "assets/images/portfolio/noodle-bar.jpg" 
+            color: "#4ECDC4",
+            link: "https://noodle-bar-example.com" 
         },
         { 
             title: "Dragon Wok", 
             description: "Application de réservation en ligne", 
-            image: "assets/images/portfolio/dragon-wok.jpg" 
+            color: "#FFE66D",
+            link: "https://dragon-wok-example.com" 
         },
         { 
             title: "Tokyo Grill", 
             description: "Menu numérique avec animations", 
-            image: "assets/images/portfolio/tokyo-grill.jpg" 
+            color: "#A78BFA",
+            link: "https://tokyo-grill-example.com" 
         },
         { 
             title: "Bamboo Garden", 
             description: "Site vitrine avec galerie photo", 
-            image: "assets/images/portfolio/bamboo-garden.jpg" 
+            color: "#F472B6",
+            link: "https://bamboo-garden-example.com" 
         },
         { 
             title: "Panda Express", 
             description: "Solution complète avec bornes interactives", 
-            image: "assets/images/portfolio/panda-express.jpg" 
+            color: "#34D399",
+            link: "https://panda-express-example.com" 
         }
     ];
 
@@ -36,16 +42,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (portfolioGrid) {
         portfolioItems.forEach((item, index) => {
-            const portfolioItem = document.createElement('div');
+            const portfolioItem = document.createElement('a');
             portfolioItem.className = 'portfolio-item';
+            portfolioItem.href = item.link;
+            portfolioItem.target = '_blank';
             portfolioItem.setAttribute('data-animate', '');
             portfolioItem.style.transitionDelay = `${index * 0.1}s`;
             
             portfolioItem.innerHTML = `
-                <img src="${item.image}" alt="${item.title}">
+                <div style="background-color: ${item.color}; opacity: 0.8; width: 100%; height: 100%;"></div>
                 <div class="portfolio-overlay">
                     <h3>${item.title}</h3>
                     <p>${item.description}</p>
+                    <span class="visit-link">Visiter le site →</span>
                 </div>
             `;
             
