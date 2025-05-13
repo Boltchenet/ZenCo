@@ -1,48 +1,36 @@
-:root {
-    --primary-color: #FF6B6B;
-    --secondary-color: #4ECDC4;
-    --accent-color: #FFE66D;
-    --dark-color: #292F36;
-    --light-color: #F7FFF7;
-    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    
-    --font-main: 'Fredoka', sans-serif;
-    --font-japanese: 'Noto Sans JP', sans-serif;
-    
-    --border-radius: 12px;
-    --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    --glass-effect: rgba(255, 255, 255, 0.1);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.2);
-    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* Animation de flottement */
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }
 
-/* Animation de rotation */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-/* Animation d'apparition */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Animation de texte dégradé */
-@keyframes gradientText {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* ANIMATIONS DE SCROLL */
+/* Scroll Animations */
 [data-animate] {
     opacity: 0;
     transform: translateY(30px);
@@ -54,14 +42,27 @@
     transform: translateY(0);
 }
 
-/* Délais d'animation */
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
-.delay-3 { transition-delay: 0.3s; }
-.delay-4 { transition-delay: 0.4s; }
-.delay-5 { transition-delay: 0.5s; }
+.delay-1 {
+    transition-delay: 0.1s;
+}
 
-/* EFFETS DE HOVER */
+.delay-2 {
+    transition-delay: 0.2s;
+}
+
+.delay-3 {
+    transition-delay: 0.3s;
+}
+
+.delay-4 {
+    transition-delay: 0.4s;
+}
+
+.delay-5 {
+    transition-delay: 0.5s;
+}
+
+/* Button Hover Effects */
 .btn-primary::after {
     content: '';
     position: absolute;
@@ -81,6 +82,7 @@
     transform: scale(1.05);
 }
 
+/* Service Card Hover */
 .service-card::before {
     content: '';
     position: absolute;
@@ -101,13 +103,14 @@
     transform: scale(1);
 }
 
+/* Form Input Focus Effect */
 .form-group input:focus ~ .focus-border,
 .form-group textarea:focus ~ .focus-border {
     width: 100%;
     transition: 0.4s;
 }
 
-/* ÉLÉMENTS FLOTTANTS */
+/* Floating Elements */
 .floating-element {
     animation: float 6s ease-in-out infinite;
 }
@@ -120,7 +123,7 @@
     animation-delay: 2s;
 }
 
-/* TEXTE DÉGRADÉ ANIMÉ */
+/* Gradient Text Animation */
 .text-gradient-animated {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--primary-color));
     background-size: 300% 300%;
@@ -130,51 +133,14 @@
     animation: gradientText 8s ease infinite;
 }
 
-/* ANIMATIONS SPÉCIFIQUES AU PORTFOLIO */
-.portfolio-item[data-animate] {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-}
-
-.portfolio-item[data-animate].animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.portfolio-item {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.portfolio-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-.portfolio-overlay {
-    transition: transform 0.4s ease;
-}
-
-/* PRÉLOADER */
-.preloader {
-    transition: opacity 0.5s ease;
-}
-
-.preloader.fade-out {
-    opacity: 0;
-}
-
-.noodle-loader {
-    animation: spin 2s linear infinite;
-}
-
-/* CURSOR */
-.custom-cursor {
-    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
-}
-
-.custom-cursor.active {
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 107, 107, 0.3);
+@keyframes gradientText {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
