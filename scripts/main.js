@@ -1,16 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Preloader
-    const preloader = document.querySelector('.preloader');
-    
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            preloader.style.opacity = '0';
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 500);
-        }, 1000);
-    });
-
     // Mobile Navigation
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -99,14 +87,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Start counters when section is in view
     const statsSection = document.querySelector('.stats');
-    const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-            animateCounters();
-            observer.unobserve(statsSection);
-        }
-    }, { threshold: 0.5 });
-    
     if (statsSection) {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                animateCounters();
+                observer.unobserve(statsSection);
+            }
+        }, { threshold: 0.5 });
+        
         observer.observe(statsSection);
     }
 
