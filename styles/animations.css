@@ -144,3 +144,30 @@
         background-position: 0% 50%;
     }
 }
+
+/* Carousel Animation Enhancements */
+.carousel-image {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.carousel-container {
+    will-change: transform;
+}
+
+.carousel-prev, .carousel-next {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.carousel-dot {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Smooth transitions for carousel navigation */
+.portfolio-carousel {
+    perspective: 1000px;
+}
+
+.carousel-image {
+    transform-style: preserve-3d;
+}

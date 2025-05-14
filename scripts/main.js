@@ -104,19 +104,69 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(statsSection);
     }
 
-    // Phone Mockup Slider simplifié
-    const screenSlider = document.querySelector('.screen-slider');
-    if (screenSlider) {
-        const colors = ["#FF6B6B", "#4ECDC4", "#FFE66D"];
-        let currentIndex = 0;
+    // Portfolio Carousel - Nouvelle version avec glissement horizontal
+    const carousel = document.querySelector('.portfolio-carousel');
+    if (carousel) {
+        const container = carousel.querySelector('.carousel-container');
+        const images = carousel.querySelectorAll('.carousel-image');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        const dotsContainer = carousel.querySelector('.carousel-dots');
         
-        function changeColor() {
-            screenSlider.style.backgroundColor = colors[currentIndex];
-            currentIndex = (currentIndex + 1) % colors.length;
-            setTimeout(changeColor, 3000);
+        let currentIndex = 0;
+        const totalImages = images.length;
+        
+        // Create dots
+        images.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('carousel-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+        
+        const dots = carousel.querySelectorAll('.carousel-dot');
+        
+        function updateCarousel() {
+            container.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
         }
         
-        changeColor();
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+        
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateCarousel();
+        }
+        
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            updateCarousel();
+        }
+        
+        // Event listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        // Auto-rotate if more than one image
+        if (totalImages > 1) {
+            let interval = setInterval(nextSlide, 5000);
+            
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(interval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                interval = setInterval(nextSlide, 5000);
+            });
+        }
     }
 
     // Form Submission
