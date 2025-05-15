@@ -1,19 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Preloader simplifié
+    // Preloader
     const preloader = document.querySelector('.preloader');
-    preloader.style.opacity = '0';
-    setTimeout(() => {
-        preloader.style.display = 'none';
-    }, 500);
+    if (preloader) {
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 500);
+    }
 
     // Mobile Navigation
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     
-    hamburger.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            this.setAttribute('aria-expanded', !isExpanded);
+        });
+    }
 
     // Smooth Scrolling for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -21,8 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             if (this.classList.contains('nav-link')) {
-                navLinks.classList.remove('active');
-                hamburger.classList.remove('active');
+                if (navLinks) navLinks.classList.remove('active');
+                if (hamburger) {
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
             }
             
             const targetId = this.getAttribute('href');
@@ -40,21 +49,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Custom Cursor
     const cursor = document.querySelector('.custom-cursor');
-    
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-    
-    document.querySelectorAll('a, button, .service-card, .portfolio-item').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('active');
+    if (cursor) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
         });
         
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('active');
+        const interactiveElements = document.querySelectorAll(
+            'a, button, .service-card, .portfolio-item, input, textarea, [tabindex]'
+        );
+        
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('active');
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+            });
         });
-    });
+    }
 
     // Scroll Animations
     const animateElements = document.querySelectorAll('[data-animate]');
@@ -70,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    window.addEventListener('scroll', checkAnimation);
+    window.addEventListener('scroll', checkAnimation, { passive: true });
     checkAnimation();
 
     // Counter Animation
@@ -93,14 +107,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     const statsSection = document.querySelector('.stats');
-    const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-            animateCounters();
-            observer.unobserve(statsSection);
-        }
-    }, { threshold: 0.5 });
-    
-    if (statsSection) {
+    if (statsSection && counters.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                animateCounters();
+                observer.unobserve(statsSection);
+            }
+        }, { threshold: 0.5 });
+        
         observer.observe(statsSection);
     }
 
@@ -116,14 +130,17 @@ document.addEventListener('DOMContentLoaded', function() {
         let currentIndex = 0;
         const totalImages = images.length;
         
-        // Create dots
-        images.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.classList.add('carousel-dot');
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(index));
-            dotsContainer.appendChild(dot);
-        });
+        // Create dots if images exist
+        if (totalImages > 0 && dotsContainer) {
+            images.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('carousel-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.setAttribute('aria-label', `Aller à l'image ${index + 1}`);
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+        }
         
         const dots = carousel.querySelectorAll('.carousel-dot');
         
@@ -133,6 +150,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update dots
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
+            });
+            
+            // Update ARIA attributes
+            images.forEach((img, index) => {
+                img.setAttribute('aria-hidden', index !== currentIndex);
             });
         }
         
@@ -152,8 +174,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Event listeners
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
         
         // Auto-rotate if more than one image
         if (totalImages > 1) {
@@ -176,13 +198,15 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             const submitBtn = this.querySelector('button[type="submit"]');
+            if (!submitBtn) return;
+            
             const originalText = submitBtn.textContent;
             const originalBg = submitBtn.style.backgroundColor;
             
             submitBtn.disabled = true;
             submitBtn.textContent = 'Envoi en cours...';
+            submitBtn.setAttribute('aria-busy', 'true');
             
-            // Envoi réel du formulaire
             fetch(this.action, {
                 method: 'POST',
                 body: new FormData(this),
@@ -191,14 +215,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (response.ok) {
                     submitBtn.textContent = 'Message envoyé!';
                     submitBtn.style.backgroundColor = '#4ECDC4';
+                    submitBtn.setAttribute('aria-busy', 'false');
                     
-                    // Redirection vers la page de remerciement
-                    const nextPage = this.querySelector('[name="_next"]').value;
+                    const nextPage = this.querySelector('[name="_next"]')?.value;
                     if (nextPage) {
                         window.location.href = nextPage;
                     }
                     
-                    // Réinitialisation après 2 secondes (au cas où la redirection échoue)
                     setTimeout(() => {
                         submitBtn.textContent = originalText;
                         submitBtn.style.backgroundColor = originalBg;
@@ -213,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Erreur:', error);
                 submitBtn.textContent = 'Erreur, réessayez';
                 submitBtn.style.backgroundColor = '#FF6B6B';
+                submitBtn.setAttribute('aria-busy', 'false');
                 
                 setTimeout(() => {
                     submitBtn.textContent = originalText;
@@ -224,16 +248,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Sticky Navigation on Scroll
-    window.addEventListener('scroll', function() {
-        const nav = document.querySelector('.glass-nav');
-        if (window.scrollY > 100) {
-            nav.style.padding = '10px 0';
-            nav.style.backdropFilter = 'blur(20px)';
-        } else {
-            nav.style.padding = '15px 0';
-            nav.style.backdropFilter = 'blur(10px)';
-        }
-    });
+    const nav = document.querySelector('.glass-nav');
+    if (nav) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                nav.style.padding = '10px 0';
+                nav.style.backdropFilter = 'blur(20px)';
+            } else {
+                nav.style.padding = '15px 0';
+                nav.style.backdropFilter = 'blur(10px)';
+            }
+        }, { passive: true });
+    }
 
     // Dynamic Year in Footer
     const yearElement = document.querySelector('.footer-bottom p');
