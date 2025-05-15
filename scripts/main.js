@@ -267,4 +267,56 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentYear = new Date().getFullYear();
         yearElement.textContent = yearElement.textContent.replace('2023', currentYear);
     }
+
+    // Gestion des cookies
+    const cookieBanner = document.getElementById('cookieBanner');
+    const acceptCookies = document.getElementById('acceptCookies');
+    const declineCookies = document.getElementById('declineCookies');
+    const settingsCookies = document.getElementById('settingsCookies');
+
+    function checkCookiePreferences() {
+        const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+        
+        // Si aucun choix n'a été fait, afficher la bannière
+        if (cookiesAccepted === null) {
+            setTimeout(() => {
+                cookieBanner.classList.add('show');
+            }, 1000);
+        }
+        
+        // Si cookies acceptés, charger les scripts externes
+        if (cookiesAccepted === 'true') {
+            loadAnalytics();
+        }
+    }
+
+    function loadAnalytics() {
+        // Ici vous pourriez charger Google Analytics par exemple
+        console.log('Analytics loaded');
+    }
+
+    if (acceptCookies) {
+        acceptCookies.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.classList.remove('show');
+            loadAnalytics();
+        });
+    }
+
+    if (declineCookies) {
+        declineCookies.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'false');
+            cookieBanner.classList.remove('show');
+        });
+    }
+
+    if (settingsCookies) {
+        settingsCookies.addEventListener('click', () => {
+            // Ici vous pourriez ouvrir un modal avec plus d'options
+            alert("Options cookies: Actuellement nous utilisons seulement des cookies essentiels et analytiques.");
+        });
+    }
+
+    // Vérifier les préférences au chargement
+    checkCookiePreferences();
 });
