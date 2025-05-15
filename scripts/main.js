@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(statsSection);
     }
 
-    // Portfolio Carousel - Nouvelle version avec glissement horizontal
+    // Portfolio Carousel
     const carousel = document.querySelector('.portfolio-carousel');
     if (carousel) {
         const container = carousel.querySelector('.carousel-container');
@@ -169,28 +169,57 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Form Submission
+    // Form Submission avec FormSubmit
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            const originalBg = submitBtn.style.backgroundColor;
             
             submitBtn.disabled = true;
             submitBtn.textContent = 'Envoi en cours...';
             
-            setTimeout(() => {
-                submitBtn.textContent = 'Message envoyé!';
-                submitBtn.style.backgroundColor = '#4ECDC4';
+            // Envoi réel du formulaire
+            fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this),
+            })
+            .then(response => {
+                if (response.ok) {
+                    submitBtn.textContent = 'Message envoyé!';
+                    submitBtn.style.backgroundColor = '#4ECDC4';
+                    
+                    // Redirection vers la page de remerciement
+                    const nextPage = this.querySelector('[name="_next"]').value;
+                    if (nextPage) {
+                        window.location.href = nextPage;
+                    }
+                    
+                    // Réinitialisation après 2 secondes (au cas où la redirection échoue)
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.backgroundColor = originalBg;
+                        submitBtn.disabled = false;
+                        this.reset();
+                    }, 2000);
+                } else {
+                    throw new Error('Erreur réseau');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                submitBtn.textContent = 'Erreur, réessayez';
+                submitBtn.style.backgroundColor = '#FF6B6B';
                 
                 setTimeout(() => {
-                    submitBtn.textContent = 'Envoyer le message';
-                    submitBtn.style.backgroundColor = '';
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.backgroundColor = originalBg;
                     submitBtn.disabled = false;
-                    this.reset();
                 }, 2000);
-            }, 1500);
+            });
         });
     }
 

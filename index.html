@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zenkō  | Création de sites web pour restaurants asiatiques</title>
+    <title>Zenkō | Création de sites web pour restaurants asiatiques</title>
     <meta name="description" content="Spécialistes en création de sites web modernes et menus numériques pour restaurants asiatiques. Donnez une présence digitale à votre établissement.">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/animations.css">
@@ -23,7 +23,7 @@
     <!-- Navigation -->
     <nav class="glass-nav">
         <div class="nav-container">
-            <a href="#" class="logo" data-text="Zenkō ">Zenkō</a>
+            <a href="#" class="logo" data-text="Zenkō">Zenkō</a>
             <div class="nav-links">
                 <a href="#services" class="nav-link hover-underline">Services</a>
                 <a href="portfolio.html" class="nav-link hover-underline">Portfolio</a>
@@ -145,7 +145,7 @@
                 <div class="contact-details">
                     <div class="contact-item">
                         <div class="contact-icon">📧</div>
-                        <a href="mailto:contact@zenkō.com">contact@zenkō.com</a>
+                        <a href="mailto:zenkowebdesign@gmail.com">zenkowebdesign@gmail.com</a>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">📱</div>
@@ -162,21 +162,26 @@
                     <a href="#" class="social-link">Behance</a>
                 </div>
             </div>
-            <form class="contact-form">
+            <form class="contact-form" action="https://formsubmit.co/zenkowebdesign@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Nouvelle demande de devis - Zenko">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="merci.html">
+                <input type="hidden" name="_captcha" value="false">
+                
                 <div class="form-group">
-                    <input type="text" id="name" required>
+                    <input type="text" id="name" name="name" required>
                     <label for="name">Votre nom</label>
                 </div>
                 <div class="form-group">
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" name="email" required>
                     <label for="email">Votre email</label>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="restaurant">
+                    <input type="text" id="restaurant" name="restaurant">
                     <label for="restaurant">Nom de votre restaurant (optionnel)</label>
                 </div>
                 <div class="form-group">
-                    <textarea id="message" rows="4" required></textarea>
+                    <textarea id="message" name="message" rows="4" required></textarea>
                     <label for="message">Comment pouvons-nous vous aider?</label>
                 </div>
                 <button type="submit" class="btn-primary">Envoyer le message</button>
