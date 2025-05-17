@@ -22,12 +22,18 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+    min-width: 320px;
+}
+
 body {
     font-family: var(--font-main);
     background-color: var(--light-color);
     color: var(--dark-color);
     overflow-x: hidden;
     line-height: 1.6;
+    width: 100%;
 }
 
 /* Typography */
@@ -47,6 +53,8 @@ h1, h2, h3, h4, h5, h6 {
 section {
     padding: 100px 5%;
     position: relative;
+    min-width: 320px;
+    overflow-x: hidden;
 }
 
 .section-header {
@@ -81,10 +89,12 @@ section {
     max-width: 100%;
     margin: 0 auto;
     padding: 0 40px;
+    min-width: 320px;
+    overflow-x: hidden;
 }
 
 .logo {
-    font-size: 2.5rem; /* Taille augmentée */
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--dark-color);
     text-decoration: none;
@@ -130,7 +140,7 @@ section {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 40px; /* Espacement augmenté */
+    gap: 40px;
 }
 
 .nav-link {
@@ -218,6 +228,8 @@ section {
     flex: 1;
     max-width: 600px;
     padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .hero-title {
@@ -574,7 +586,7 @@ section {
 }
 
 .footer-logo {
-    font-size: 2.5rem; /* Taille augmentée */
+    font-size: 2.5rem;
     font-weight: 700;
     background: linear-gradient(90deg, var(--primary-color), #4ECDC4);
     -webkit-background-clip: text;
@@ -726,6 +738,15 @@ section {
         justify-content: center;
         margin-top: 20px;
     }
+
+    /* Suppression du carrousel sur mobile */
+    .about-image {
+        display: none;
+    }
+    
+    .about {
+        padding-bottom: 50px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -751,6 +772,45 @@ section {
     .carousel-dot {
         width: 8px;
         height: 8px;
+    }
+
+    /* Corrections pour le zoom */
+    html {
+        font-size: 14px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+
+    /* Correction pour le formulaire de contact */
+    .contact-container {
+        padding: 30px 20px;
+    }
+    
+    /* Ajustement des boutons */
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Correction pour les cartes de services */
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Ajustement des marges/paddings */
+    section {
+        padding: 60px 20px;
+    }
+    
+    .logo {
+        font-size: 1.8rem;
     }
 }
 
