@@ -10,12 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "Shidori", 
             description: "Site premium pour restaurant japonais avec menu interactif", 
             color: "#d4af37",
-            link: "https://shidori-example.com",
+            link: "https://shidori-five.vercel.app",
             featured: true,
-            tags: ["Site vitrine", "Menu digital", "Design luxe"] // Notez le tag "Design luxe" pour le style spécifique
+            tags: ["Site vitrine", "Menu digital", "Design luxe"]
         },
-        // Ajoutez d'autres projets ici si nécessaire
-    ];
+           ];
 
     // Éléments DOM
     const portfolioGrid = document.querySelector('.portfolio-grid');
@@ -88,17 +87,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 portfolioItem.style.transitionDelay = `${index * 0.1}s`;
                 
                 // Structure HTML du projet
-                portfolioItem.innerHTML = `
-                    <div style="background-color: ${item.color}; opacity: 0.8; width: 100%; height: 100%;"></div>
-                    <div class="portfolio-overlay">
-                        <h3>${item.title}</h3>
-                        <p>${item.description}</p>
-                        <div class="portfolio-tags">
-                            ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                if (item.tags.includes("Design luxe")) {
+                    // Style spécial pour Shidori
+                    portfolioItem.innerHTML = `
+                        <div style="background: url('https://media.discordapp.net/attachments/847183709769039873/1373316837302997103/image.png?ex=6829f879&is=6828a6f9&hm=5bf017de2bc3388982d57028cc304e8df2567589f812f30e6b0f1df4f0033922&=&format=webp&quality=lossless&width=1872&height=294') center/cover no-repeat; width: 100%; height: 100%;"></div>
+                        <div class="portfolio-overlay">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                            <div class="portfolio-tags">
+                                ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                            <span class="visit-link">Visiter le site →</span>
                         </div>
-                        <span class="visit-link">Visiter le site →</span>
-                    </div>
-                `;
+                    `;
+                } else {
+                    // Style standard pour les autres projets
+                    portfolioItem.innerHTML = `
+                        <div style="background-color: ${item.color}; opacity: 0.8; width: 100%; height: 100%;"></div>
+                        <div class="portfolio-overlay">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                            <div class="portfolio-tags">
+                                ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                            <span class="visit-link">Visiter le site →</span>
+                        </div>
+                    `;
+                }
                 
                 portfolioGrid.appendChild(portfolioItem);
             });
