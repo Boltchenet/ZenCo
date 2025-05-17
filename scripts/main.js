@@ -87,37 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', checkAnimation, { passive: true });
     checkAnimation();
 
-    // Counter Animation
-    const counters = document.querySelectorAll('.stat-number');
-    const speed = 200;
-    
-    function animateCounters() {
-        counters.forEach(counter => {
-            const target = +counter.getAttribute('data-count');
-            const count = +counter.innerText;
-            const increment = target / speed;
-            
-            if (count < target) {
-                counter.innerText = Math.ceil(count + increment);
-                setTimeout(animateCounters, 1);
-            } else {
-                counter.innerText = target;
-            }
-        });
-    }
-    
-    const statsSection = document.querySelector('.stats');
-    if (statsSection && counters.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                animateCounters();
-                observer.unobserve(statsSection);
-            }
-        }, { threshold: 0.5 });
-        
-        observer.observe(statsSection);
-    }
-
     // Portfolio Carousel
     const carousel = document.querySelector('.portfolio-carousel');
     if (carousel) {
@@ -130,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let currentIndex = 0;
         const totalImages = images.length;
         
-        // Create dots if images exist
         if (totalImages > 0 && dotsContainer) {
             images.forEach((_, index) => {
                 const dot = document.createElement('div');
@@ -147,12 +115,10 @@ document.addEventListener('DOMContentLoaded', function() {
         function updateCarousel() {
             container.style.transform = `translateX(-${currentIndex * 100}%)`;
             
-            // Update dots
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
             });
             
-            // Update ARIA attributes
             images.forEach((img, index) => {
                 img.setAttribute('aria-hidden', index !== currentIndex);
             });
@@ -173,11 +139,9 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCarousel();
         }
         
-        // Event listeners
         if (nextBtn) nextBtn.addEventListener('click', nextSlide);
         if (prevBtn) prevBtn.addEventListener('click', prevSlide);
         
-        // Auto-rotate if more than one image
         if (totalImages > 1) {
             let interval = setInterval(nextSlide, 5000);
             
@@ -277,14 +241,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function checkCookiePreferences() {
         const cookiesAccepted = localStorage.getItem('cookiesAccepted');
         
-        // Si aucun choix n'a été fait, afficher la bannière
         if (cookiesAccepted === null) {
             setTimeout(() => {
                 cookieBanner.classList.add('show');
             }, 1000);
         }
         
-        // Si cookies acceptés, charger les scripts externes
         if (cookiesAccepted === 'true') {
             loadAnalytics();
         }
@@ -312,7 +274,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (settingsCookies) {
         settingsCookies.addEventListener('click', () => {
-            // Ici vous pourriez ouvrir un modal avec plus d'options
             alert("Options cookies: Actuellement nous utilisons seulement des cookies essentiels et analytiques.");
         });
     }
