@@ -1,3 +1,124 @@
+/* Portfolio Styles - Zenkō */
+:root {
+    --primary-color: #FF6B6B;
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --gold-accent: #d4af37;
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --bg-light: #f5f0e6;
+}
+
+/* Structure principale */
+.portfolio-main {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #000000;
+}
+
+.section-header h2 .text-gradient {
+    background: linear-gradient(90deg, var(--primary-color), #4ECDC4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, var(--primary-color), #4ECDC4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.black-text {
+    color: #000000 !important;
+}
+
+/* Filtres */
+.portfolio-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.2rem;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: none;
+    box-shadow: 0 2px 5px rgba(255, 107, 107, 0.3);
+}
+
+/* Grille de projets */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.portfolio-grid.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
+.portfolio-grid.loading::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Cartes de projet */
 .portfolio-item {
     position: relative;
     border-radius: var(--border-radius);
@@ -7,24 +128,287 @@
     box-shadow: var(--box-shadow);
     display: block;
     text-decoration: none;
-    background: #f5f0e6;
+    background: var(--bg-light);
+}
+
+.portfolio-item.featured {
+    grid-column: 1 / -1;
+    height: 400px;
 }
 
 .portfolio-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
+.portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: var(--text-light);
+    transition: var(--transition);
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    padding-bottom: 2.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+}
+
+.portfolio-overlay h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.portfolio-overlay p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+/* Tags */
+.portfolio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.8rem 0;
+}
+
+.tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Bouton de visite */
 .visit-link {
     display: inline-block;
     margin-top: 10px;
-    padding: 5px 10px;
+    padding: 8px 16px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     font-size: 0.9rem;
     transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-weight: 500;
 }
 
 .portfolio-item:hover .visit-link {
     background: var(--primary-color);
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+/* Animations */
+.portfolio-item[data-animate] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.portfolio-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fallback pour JavaScript désactivé */
+.portfolio-grid-fallback {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.portfolio-grid-fallback .portfolio-item {
+    height: 350px;
+}
+
+/* Style spécifique pour la bannière Shidori */
+.portfolio-item[data-tags*="design-luxe"] .portfolio-overlay {
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent) !important;
+}
+
+.portfolio-item[data-tags*="design-luxe"] {
+    background: 
+        linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.8)),
+        url('https://sdmntpritalynorth.oaiusercontent.com/files/00000000-ebbc-6246-b72f-80ed14865983/raw?se=2025-05-17T01%3A06%3A29Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-16T20%3A52%3A07Z&ske=2025-05-17T20%3A52%3A07Z&sks=b&skv=2024-08-04&sig=GMv2A8kNp2OnILDyRwC73cZmEDxfbKIYb4yGOfl3Yik%3D') center/cover no-repeat !important;
+    position: relative;
+    overflow: hidden;
+    background-position: center 30% !important;
+}
+
+.portfolio-item[data-tags*="design-luxe"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/golden.png');
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.portfolio-item[data-tags*="design-luxe"]::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    z-index: 0;
+}
+
+.portfolio-item[data-tags*="design-luxe"] > div:first-child {
+    display: none;
+}
+
+.portfolio-item[data-tags*="design-luxe"] .portfolio-overlay h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem !important;
+    color: #d4af37 !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.portfolio-item[data-tags*="design-luxe"] .portfolio-overlay p {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+}
+
+.portfolio-item[data-tags*="design-luxe"] .visit-link {
+    border-color: #d4af37 !important;
+    color: #d4af37 !important;
+    background: rgba(212, 175, 55, 0.1) !important;
+}
+
+.portfolio-item[data-tags*="design-luxe"]:hover .visit-link {
+    background: rgba(212, 175, 55, 0.3) !important;
+    color: #fff !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .portfolio-item.featured {
+        height: 350px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-main {
+        padding: 3rem 1.5rem;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portfolio-item,
+    .portfolio-item.featured {
+        height: 300px;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .portfolio-filters {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        scrollbar-width: none;
+    }
+    
+    .portfolio-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Adaptation responsive pour Shidori */
+    .portfolio-item[data-tags*="design-luxe"]::after {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .portfolio-item[data-tags*="design-luxe"] .portfolio-overlay h3 {
+        font-size: 2rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-main {
+        padding: 2rem 1rem;
+    }
+    
+    .portfolio-item,
+    .portfolio-item.featured {
+        height: 250px;
+    }
+    
+    .portfolio-overlay {
+        padding: 1.5rem 1rem;
+    }
+    
+    .portfolio-overlay h3 {
+        font-size: 1.3rem;
+    }
+    
+    .portfolio-overlay p {
+        font-size: 0.85rem;
+    }
+    
+    .visit-link {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .tag {
+        font-size: 0.6rem;
+    }
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+    .portfolio-item {
+        background: #1a1a1a;
+    }
+    
+    .filter-btn {
+        background: #2d2d2d;
+        color: #eee;
+        border-color: #444;
+    }
+    
+    .section-header h2 {
+        color: #f0f0f0;
+    }
+    
+    .section-header p {
+        color: #aaa;
+    }
+}
+
+/* Règle pour le titre du portfolio */
+#portfolio-title {
+    color: #000000;
+}
+
+#portfolio-title .text-gradient {
+    background: linear-gradient(90deg, var(--primary-color), #4ECDC4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
