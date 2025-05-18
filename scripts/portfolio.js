@@ -19,8 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Site web moderne pour un bar à cocktails avec menu animé", 
             color: "#1a1a2e",
             link: "https://boltchenet.github.io/Bartender/",
-            featured: true, // Modification ici
-            tags: ["Site vitrine", "Menu digital", "Bar & Cocktails"]
+            featured: true,
+            tags: ["Site vitrine", "Menu digital"]
+        },
+        { 
+            title: "Chihiro", 
+            description: "Site élégant pour restaurant japonais avec réservation en ligne", 
+            color: "#1a1a2e",
+            link: "https://chihiro-vert.vercel.app/",
+            featured: true,
+            tags: ["Site vitrine", "Réservation en ligne", "Design moderne"]
         }
     ];
 
@@ -73,15 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Affichage des projets
     function displayProjects() {
-        // Afficher l'état de chargement
         portfolioGrid.classList.add('loading');
         
-        // Simuler un chargement asynchrone
         setTimeout(() => {
             portfolioGrid.classList.remove('loading');
             portfolioGrid.innerHTML = '';
             
-            // Trier pour mettre le projet featured en premier
             const sortedItems = [...portfolioItems].sort((a, b) => (b.featured || false) - (a.featured || false));
             
             sortedItems.forEach((item, index) => {
@@ -94,9 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 portfolioItem.dataset.tags = item.tags.map(tag => tag.replace(/\s+/g, '-').toLowerCase()).join(',');
                 portfolioItem.style.transitionDelay = `${index * 0.1}s`;
                 
-                // Structure HTML du projet
                 if (item.tags.includes("Design luxe")) {
-                    // Style spécial pour Shidori
                     portfolioItem.innerHTML = `
                         <div class="portfolio-image-container" style="background-image: url('https://cdn.discordapp.com/attachments/847183709769039873/1373436188131852398/image.png?ex=682a67a0&is=68291620&hm=1e470e41b049b0776459976d902c732df76d4a9617c2347b4aebb8adcd2941d5&');"></div>
                         <div class="portfolio-overlay">
@@ -109,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     `;
                 } else if (item.title === "Bartender") {
-                    // Style spécial pour Bartender
                     portfolioItem.innerHTML = `
                         <div class="portfolio-image-container" style="background-image: url('https://media.discordapp.net/attachments/847183709769039873/1373439334165778432/image.png?ex=682a6a8e&is=6829190e&hm=dc57c30fabf34571724ba68b593b69e073f09e5954cd42989daa06325f2c6363&=&format=webp&quality=lossless&width=1872&height=521'); background-position: center 30%;"></div>
                         <div class="portfolio-overlay">
@@ -121,8 +123,19 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span class="visit-link">Visiter le site →</span>
                         </div>
                     `;
+                } else if (item.title === "Chihiro") {
+                    portfolioItem.innerHTML = `
+                        <div class="portfolio-image-container" style="background-image: url('https://media.discordapp.net/attachments/847183709769039873/1373746228482801796/chihiro_banniere.png?ex=682b885f&is=682a36df&hm=70e48612b8c21dd97a69b5f31b7d27ba332ee6d229ffb937b85183ab035d8a06&=&format=webp&quality=lossless&width=1788&height=856'); background-position: center;"></div>
+                        <div class="portfolio-overlay">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                            <div class="portfolio-tags">
+                                ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                            <span class="visit-link">Visiter le site →</span>
+                        </div>
+                    `;
                 } else {
-                    // Style standard pour les autres projets
                     portfolioItem.innerHTML = `
                         <div class="portfolio-image-container" style="background-color: ${item.color};"></div>
                         <div class="portfolio-overlay">

@@ -257,6 +257,30 @@
     background: rgba(255, 255, 255, 0.3) !important;
 }
 
+/* Style spécifique pour Chihiro */
+.portfolio-item[data-tags*="design-moderne"] .portfolio-overlay h3 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    color: #fff !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.portfolio-item[data-tags*="design-moderne"] .portfolio-overlay p {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+}
+
+.portfolio-item[data-tags*="design-moderne"] .visit-link {
+    border-color: #fff !important;
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.portfolio-item[data-tags*="design-moderne"]:hover .visit-link {
+    background: rgba(255, 107, 107, 0.3) !important;
+    color: #fff !important;
+}
+
 /* Animations */
 .portfolio-item[data-animate] {
     opacity: 0;
