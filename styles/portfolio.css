@@ -115,9 +115,16 @@
     animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/* Image Container */
+.portfolio-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Cartes de projet */
@@ -125,7 +132,7 @@
     position: relative;
     border-radius: var(--border-radius);
     overflow: hidden;
-    height: 350px;
+    height: 280px;
     transition: var(--transition);
     box-shadow: var(--box-shadow);
     display: block;
@@ -230,6 +237,24 @@
 .portfolio-item[data-tags*="design-luxe"]:hover .visit-link {
     background: rgba(212, 175, 55, 0.3) !important;
     color: #fff !important;
+}
+
+/* Style spécifique pour Bartender */
+.portfolio-item[data-tags*="bar-cocktails"] .portfolio-overlay h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    color: #fff !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.portfolio-item[data-tags*="bar-cocktails"] .visit-link {
+    border-color: #fff !important;
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.portfolio-item[data-tags*="bar-cocktails"]:hover .visit-link {
+    background: rgba(255, 255, 255, 0.3) !important;
 }
 
 /* Animations */
@@ -365,4 +390,9 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

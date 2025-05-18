@@ -14,7 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
             featured: true,
             tags: ["Site vitrine", "Menu digital", "Design luxe"]
         },
-           ];
+        { 
+            title: "Bartender", 
+            description: "Site web moderne pour un bar à cocktails avec menu animé", 
+            color: "#1a1a2e",
+            link: "https://boltchenet.github.io/Bartender/",
+            featured: true, // Modification ici
+            tags: ["Site vitrine", "Menu digital", "Bar & Cocktails"]
+        }
+    ];
 
     // Éléments DOM
     const portfolioGrid = document.querySelector('.portfolio-grid');
@@ -90,7 +98,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (item.tags.includes("Design luxe")) {
                     // Style spécial pour Shidori
                     portfolioItem.innerHTML = `
-                        <div style="background: url('https://media.discordapp.net/attachments/847183709769039873/1373316837302997103/image.png?ex=6829f879&is=6828a6f9&hm=5bf017de2bc3388982d57028cc304e8df2567589f812f30e6b0f1df4f0033922&=&format=webp&quality=lossless&width=1872&height=294') center/cover no-repeat; width: 100%; height: 100%;"></div>
+                        <div class="portfolio-image-container" style="background-image: url('https://cdn.discordapp.com/attachments/847183709769039873/1373436188131852398/image.png?ex=682a67a0&is=68291620&hm=1e470e41b049b0776459976d902c732df76d4a9617c2347b4aebb8adcd2941d5&');"></div>
+                        <div class="portfolio-overlay">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                            <div class="portfolio-tags">
+                                ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                            <span class="visit-link">Visiter le site →</span>
+                        </div>
+                    `;
+                } else if (item.title === "Bartender") {
+                    // Style spécial pour Bartender
+                    portfolioItem.innerHTML = `
+                        <div class="portfolio-image-container" style="background-image: url('https://media.discordapp.net/attachments/847183709769039873/1373439334165778432/image.png?ex=682a6a8e&is=6829190e&hm=dc57c30fabf34571724ba68b593b69e073f09e5954cd42989daa06325f2c6363&=&format=webp&quality=lossless&width=1872&height=521'); background-position: center 30%;"></div>
                         <div class="portfolio-overlay">
                             <h3>${item.title}</h3>
                             <p>${item.description}</p>
@@ -103,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     // Style standard pour les autres projets
                     portfolioItem.innerHTML = `
-                        <div style="background-color: ${item.color}; opacity: 0.8; width: 100%; height: 100%;"></div>
+                        <div class="portfolio-image-container" style="background-color: ${item.color};"></div>
                         <div class="portfolio-overlay">
                             <h3>${item.title}</h3>
                             <p>${item.description}</p>
@@ -166,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="portfolio-grid-fallback">
                 ${portfolioItems.slice(0, 3).map(item => `
                     <a href="${item.link}" class="portfolio-item" target="_blank" rel="noopener">
-                        <div style="background-color: ${item.color}; opacity: 0.8; width: 100%; height: 100%;"></div>
+                        <div class="portfolio-image-container" style="background-color: ${item.color};"></div>
                         <div class="portfolio-overlay">
                             <h3>${item.title}</h3>
                             <p>${item.description}</p>
