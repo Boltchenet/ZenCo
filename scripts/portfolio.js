@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (item.tags.includes("Design luxe")) {
                     portfolioItem.innerHTML = `
-                        <div class="portfolio-image-container" style="background-image: url('https://cdn.discordapp.com/attachments/847183709769039873/1373436188131852398/image.png?ex=682a67a0&is=68291620&hm=1e470e41b049b0776459976d902c732df76d4a9617c2347b4aebb8adcd2941d5&');"></div>
+                        <div class="portfolio-image-container" style="background-image: url('assets/images/shidori_banniere.png');"></div>
                         <div class="portfolio-overlay">
                             <h3>${item.title}</h3>
                             <p>${item.description}</p>
