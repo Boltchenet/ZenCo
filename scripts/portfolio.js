@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     `;
                 } else if (item.title === "Chihiro") {
                     portfolioItem.innerHTML = `
-                        <div class="portfolio-image-container" style="background-image: url('https://media.discordapp.net/attachments/847183709769039873/1373746228482801796/chihiro_banniere.png?ex=682b885f&is=682a36df&hm=70e48612b8c21dd97a69b5f31b7d27ba332ee6d229ffb937b85183ab035d8a06&=&format=webp&quality=lossless&width=1788&height=856'); background-position: center;"></div>
+                        <div class="portfolio-image-container" style="background-image: url('assets/images/chihiro_banniere.png'); background-position: center;"></div>
                         <div class="portfolio-overlay">
                             <h3>${item.title}</h3>
                             <p>${item.description}</p>
