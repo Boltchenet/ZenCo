@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     `;
                 } else if (item.title === "Bartender") {
                     portfolioItem.innerHTML = `
-                        <div class="portfolio-image-container" style="background-image: url('https://media.discordapp.net/attachments/847183709769039873/1373439334165778432/image.png?ex=682a6a8e&is=6829190e&hm=dc57c30fabf34571724ba68b593b69e073f09e5954cd42989daa06325f2c6363&=&format=webp&quality=lossless&width=1872&height=521'); background-position: center 30%;"></div>
+                        <div class="portfolio-image-container" style="background-image: url('assets/images/bartender_banniere.png'); background-position: center 30%;"></div>
                         <div class="portfolio-overlay">
                             <h3>${item.title}</h3>
                             <p>${item.description}</p>
