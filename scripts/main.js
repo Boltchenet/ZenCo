@@ -47,29 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Custom Cursor
-    const cursor = document.querySelector('.custom-cursor');
-    if (cursor) {
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = `${e.clientX}px`;
-            cursor.style.top = `${e.clientY}px`;
-        });
-        
-        const interactiveElements = document.querySelectorAll(
-            'a, button, .service-card, .portfolio-item, input, textarea, [tabindex]'
-        );
-        
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('active');
-            });
-            
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('active');
-            });
-        });
-    }
-
     // Scroll Animations
     const animateElements = document.querySelectorAll('[data-animate]');
     

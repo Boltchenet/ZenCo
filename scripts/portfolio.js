@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Affichage des projets
+     // Affichage des projets
     function displayProjects() {
         portfolioGrid.classList.add('loading');
         
@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setupAnimations();
         }, 800);
     }
+
 
     // Gestion des animations
     function setupAnimations() {
