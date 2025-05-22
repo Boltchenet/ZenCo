@@ -8,37 +8,39 @@
     --luxe: #264653;             /* Bleu pétrole pour accents */
     --border-radius: 8px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --box-shadow: 0 4px 6px rgba(44, 62, 80, 0.1); /* Ombre bleu roi */
+    --box-shadow: 0 4px 6px rgba(44, 62, 80, 0.1);
 }
 
-/* Structure principale avec fond beige */
-.portfolio-main {
-    padding: 4rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    background: url('images/fondbeige.png') no-repeat center center;
+/* Fond d'écran complet */
+body {
+    background: url('images/fondbeige.png') no-repeat center center fixed;
     background-size: cover;
-    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 }
 
-/* Overlay pour améliorer la lisibilité */
-.portfolio-main::before {
+/* Overlay semi-transparent pour tout l'écran */
+body::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(245, 240, 230, 0.9);
-    z-index: 0;
+    background-color: rgba(245, 240, 230, 0.85);
+    z-index: -1;
 }
 
-/* Contenu principal */
-.portfolio-section {
+/* Structure principale */
+.portfolio-main {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
     position: relative;
-    z-index: 1;
 }
 
+/* Section Header */
 .section-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -165,13 +167,13 @@
     left: 0;
     right: 0;
     padding: 2rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent) !important;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
     color: white;
     transition: var(--transition);
 }
 
 .portfolio-item:hover .portfolio-overlay {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent) !important;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
     padding-bottom: 2.5rem;
 }
 
@@ -180,7 +182,7 @@
     margin-bottom: 0.5rem;
     font-weight: 600;
     font-family: 'Inter', sans-serif;
-    color: white !important;
+    color: white;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -190,7 +192,7 @@
     margin-bottom: 1rem;
     opacity: 0.9;
     font-family: 'Inter', sans-serif;
-    color: white !important;
+    color: white;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
@@ -210,18 +212,6 @@
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
-}
-
-/* Seuls ces tags seront affichés */
-.tag[data-tag="site-vitrine"],
-.tag[data-tag="menu-digital"],
-.tag[data-tag="reservation-en-ligne"] {
-    display: inline-block;
-}
-
-/* Masquer tous les autres tags */
-.tag:not([data-tag="site-vitrine"]):not([data-tag="menu-digital"]):not([data-tag="reservation-en-ligne"]) {
-    display: none;
 }
 
 /* Bouton de visite */
@@ -271,6 +261,10 @@
 }
 
 @media (max-width: 768px) {
+    body::before {
+        background-color: rgba(245, 240, 230, 0.92);
+    }
+    
     .portfolio-main {
         padding: 3rem 1.5rem;
     }
@@ -332,31 +326,7 @@
     }
 }
 
-/* Mode sombre */
-@media (prefers-color-scheme: dark) {
-    .portfolio-item {
-        background: #2D3748;
-    }
-    
-    .filter-btn {
-        background: #4A5568;
-        color: #E2E8F0;
-        border-color: #718096;
-    }
-    
-    .filter-btn.active {
-        background: var(--primary-color);
-        color: white;
-    }
-    
-    .section-header h2 {
-        color: #F7FAFC;
-    }
-    
-    .section-header p {
-        color: #CBD5E0;
-    }
-}
+
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
