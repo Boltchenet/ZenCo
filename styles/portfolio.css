@@ -1,21 +1,42 @@
 /* Portfolio Styles - Zenkō */
 :root {
-    --primary-color: #D4AF37;
-    --secondary-color: #8B6B61;
-    --border-radius: 12px;
-    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    --text-light: #ffffff;
-    --text-dark: #3E3E3E;
-    --bg-light: #F5F0E6;
+    --primary-color: #2C3E50;    /* Bleu roi assourdi */
+    --secondary-color: #3B4C6B;  /* Bleu acier */
+    --accent-color: #5A738E;     /* Bleu-gris froid */
+    --dark-color: #0A1F44;       /* Bleu marine profond */
+    --light-color: #F5F0E6;      /* Fond beige */
+    --luxe: #264653;             /* Bleu pétrole pour accents */
+    --border-radius: 8px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --box-shadow: 0 4px 6px rgba(44, 62, 80, 0.1); /* Ombre bleu roi */
 }
 
-/* Structure principale */
+/* Structure principale avec fond beige */
 .portfolio-main {
     padding: 4rem 2rem;
     max-width: 1400px;
     margin: 0 auto;
-    background: var(--bg-light);
+    background: url('images/fondbeige.png') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+/* Overlay pour améliorer la lisibilité */
+.portfolio-main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(245, 240, 230, 0.9);
+    z-index: 0;
+}
+
+/* Contenu principal */
+.portfolio-section {
+    position: relative;
+    z-index: 1;
 }
 
 .section-header {
@@ -24,9 +45,9 @@
 }
 
 .section-header h2 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: var(--text-dark);
+    color: var(--primary-color);
 }
 
 .section-header h2 .text-gradient {
@@ -38,7 +59,7 @@
 
 .section-header p {
     font-size: 1.1rem;
-    color: rgba(62, 62, 62, 0.8);
+    color: var(--primary-color);
     max-width: 700px;
     margin: 0 auto;
     line-height: 1.6;
@@ -56,18 +77,19 @@
 
 .filter-btn {
     padding: 0.5rem 1.2rem;
-    border: 1px solid rgba(139, 107, 97, 0.3);
+    border: 1px solid rgba(66, 153, 225, 0.3);
     background: white;
     border-radius: 20px;
     cursor: pointer;
     transition: var(--transition);
     font-size: 0.9rem;
     font-weight: 500;
+    color: var(--dark-color);
 }
 
 .filter-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
 }
 
 .filter-btn.active {
@@ -101,18 +123,6 @@
     animation: spin 1s linear infinite;
 }
 
-/* Image Container */
-.portfolio-image-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 /* Cartes de projet */
 .portfolio-item {
     position: relative;
@@ -136,25 +146,42 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Image Container */
+.portfolio-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Overlay */
 .portfolio-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 2.5rem 1.5rem;
-    background: linear-gradient(to top, rgba(139, 107, 97, 0.9), transparent);
-    color: var(--text-light);
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent) !important;
+    color: white;
     transition: var(--transition);
 }
 
 .portfolio-item:hover .portfolio-overlay {
-    padding-bottom: 3rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent) !important;
+    padding-bottom: 2.5rem;
 }
 
 .portfolio-overlay h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .portfolio-overlay p {
@@ -162,6 +189,9 @@
     line-height: 1.5;
     margin-bottom: 1rem;
     opacity: 0.9;
+    font-family: 'Inter', sans-serif;
+    color: white !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* Tags */
@@ -175,10 +205,23 @@
 .tag {
     font-size: 0.7rem;
     padding: 0.2rem 0.6rem;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 10px;
-    backdrop-filter: blur(5px);    
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Seuls ces tags seront affichés */
+.tag[data-tag="site-vitrine"],
+.tag[data-tag="menu-digital"],
+.tag[data-tag="reservation-en-ligne"] {
+    display: inline-block;
+}
+
+/* Masquer tous les autres tags */
+.tag:not([data-tag="site-vitrine"]):not([data-tag="menu-digital"]):not([data-tag="reservation-en-ligne"]) {
+    display: none;
 }
 
 /* Bouton de visite */
@@ -186,84 +229,20 @@
     display: inline-block;
     margin-top: 10px;
     padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     font-size: 0.9rem;
     transition: var(--transition);
     border: 1px solid rgba(255, 255, 255, 0.3);
     font-weight: 500;
+    color: white;
+    font-family: 'Inter', sans-serif;
 }
 
 .portfolio-item:hover .visit-link {
-    background: var(--primary-color);
+    background: var(--accent-color);
     border-color: transparent;
     transform: translateY(-2px);
-}
-
-/* Style spécifique pour Shidori */
-.portfolio-item[data-tags*="design-luxe"] .portfolio-overlay h3 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 2.5rem !important;
-    color: #d4af37 !important;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-}
-
-.portfolio-item[data-tags*="design-luxe"] .portfolio-overlay p {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 300;
-}
-
-.portfolio-item[data-tags*="design-luxe"] .visit-link {
-    border-color: #d4af37 !important;
-    color: #d4af37 !important;
-    background: rgba(212, 175, 55, 0.1) !important;
-}
-
-.portfolio-item[data-tags*="design-luxe"]:hover .visit-link {
-    background: rgba(212, 175, 55, 0.3) !important;
-    color: #fff !important;
-}
-
-/* Style spécifique pour Bartender */
-.portfolio-item[data-tags*="bar-cocktails"] .portfolio-overlay h3 {
-    font-family: 'Fredoka', sans-serif;
-    font-weight: 700;
-    color: #fff !important;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-}
-
-.portfolio-item[data-tags*="bar-cocktails"] .visit-link {
-    border-color: #fff !important;
-    color: #fff !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-}
-
-.portfolio-item[data-tags*="bar-cocktails"]:hover .visit-link {
-    background: rgba(255, 255, 255, 0.3) !important;
-}
-
-/* Style spécifique pour Chihiro */
-.portfolio-item[data-tags*="design-moderne"] .portfolio-overlay h3 {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 700;
-    color: #fff !important;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-}
-
-.portfolio-item[data-tags*="design-moderne"] .portfolio-overlay p {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 300;
-}
-
-.portfolio-item[data-tags*="design-moderne"] .visit-link {
-    border-color: #fff !important;
-    color: #fff !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-}
-
-.portfolio-item[data-tags*="design-moderne"]:hover .visit-link {
-    background: rgba(255, 107, 107, 0.3) !important;
-    color: #fff !important;
 }
 
 /* Animations */
@@ -319,10 +298,6 @@
     .portfolio-filters::-webkit-scrollbar {
         display: none;
     }
-
-    .portfolio-item[data-tags*="design-luxe"] .portfolio-overlay h3 {
-        font-size: 2rem !important;
-    }
 }
 
 @media (max-width: 480px) {
@@ -360,21 +335,26 @@
 /* Mode sombre */
 @media (prefers-color-scheme: dark) {
     .portfolio-item {
-        background: #2a2a2a;
+        background: #2D3748;
     }
     
     .filter-btn {
-        background: #3a3a3a;
-        color: #eee;
-        border-color: #555;
+        background: #4A5568;
+        color: #E2E8F0;
+        border-color: #718096;
+    }
+    
+    .filter-btn.active {
+        background: var(--primary-color);
+        color: white;
     }
     
     .section-header h2 {
-        color: #f0f0f0;
+        color: #F7FAFC;
     }
     
     .section-header p {
-        color: #aaa;
+        color: #CBD5E0;
     }
 }
 

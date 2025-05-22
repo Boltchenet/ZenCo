@@ -38,32 +38,30 @@ document.addEventListener('DOMContentLoaded', function() {
     filterContainer.className = 'portfolio-filters';
     
     // Création des filtres
-    function setupFilters() {
-        const allTags = [...new Set(portfolioItems.flatMap(item => item.tags))];
-        
-        const filterHTML = `
-            <button class="filter-btn active" data-filter="all">Tous</button>
-            ${allTags.map(tag => `
-                <button class="filter-btn" data-filter="${tag.replace(/\s+/g, '-').toLowerCase()}">${tag}</button>
-            `).join('')}
-        `;
-        
-        filterContainer.innerHTML = filterHTML;
-        portfolioGrid.before(filterContainer);
-        
-        // Gestion des clics sur les filtres
-        filterContainer.addEventListener('click', function(e) {
-            if (e.target.classList.contains('filter-btn')) {
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                e.target.classList.add('active');
-                
-                const filter = e.target.dataset.filter;
-                filterProjects(filter);
-            }
-        });
-    }
+   function setupFilters() {
+    const filterHTML = `
+        <button class="filter-btn active" data-filter="all">Tous</button>
+        <button class="filter-btn" data-filter="site-vitrine">Site Vitrine</button>
+        <button class="filter-btn" data-filter="menu-digital">Menu Digital</button>
+        <button class="filter-btn" data-filter="reservation-en-ligne">Réservation en ligne</button>
+    `;
+    
+    filterContainer.innerHTML = filterHTML;
+    portfolioGrid.before(filterContainer);
+    
+    // Gestion des clics sur les filtres
+    filterContainer.addEventListener('click', function(e) {
+        if (e.target.classList.contains('filter-btn')) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            e.target.classList.add('active');
+            
+            const filter = e.target.dataset.filter;
+            filterProjects(filter);
+        }
+    });
+}
 
     // Filtrage des projets
     function filterProjects(filter) {
