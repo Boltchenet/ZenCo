@@ -1,14 +1,11 @@
 /* Portfolio Styles - Zenkō */
 :root {
-    --primary-color: #2C3E50;    /* Bleu roi assourdi */
-    --secondary-color: #3B4C6B;  /* Bleu acier */
-    --accent-color: #5A738E;     /* Bleu-gris froid */
-    --dark-color: #0A1F44;       /* Bleu marine profond */
-    --light-color: #F5F0E6;      /* Fond beige */
-    --luxe: #264653;             /* Bleu pétrole pour accents */
-    --border-radius: 8px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --box-shadow: 0 4px 6px rgba(44, 62, 80, 0.1);
+    --primary-color: #8B5A2B;
+    --secondary-color: #A67C52;
+    --accent-color: #BF9773;
+    --dark-color: #5D4037;
+    --light-color: #F5F0E6;
+    --luxe: #6D4C41; /* Marron plus profond pour accents */
 }
 
 /* Fond d'écran complet */

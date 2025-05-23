@@ -1,18 +1,18 @@
 :root {
-    --primary-color: #2C3E50;    /* Bleu roi assourdi - Boutons principaux */
-    --secondary-color: #3B4C6B;  /* Bleu acier - Survols */
-    --accent-color: #5A738E;     /* Bleu-gris froid - Bordures/détails */
-    --dark-color: #0A1F44;       /* Bleu marine profond - Textes */
-    --light-color: #F5F0E6;      /* Fond beige (conservé pour le contraste) */
-    --gradient: linear-gradient(to right, #2C3E50, #3B4C6B);
+    --primary-color: #8B5A2B;    /* Marron chaud - Boutons principaux */
+    --secondary-color: #A67C52;  /* Marron clair - Survols */
+    --accent-color: #BF9773;     /* Beige-marron - Bordures/détails */
+    --dark-color: #5D4037;       /* Marron profond - Textes */
+    --light-color: #F5F0E6;      /* Fond beige */
+    --gradient: linear-gradient(to right, #8B5A2B, #A67C52);
     
     --font-main: 'Inter', sans-serif;
     --font-japanese: 'Noto Sans JP', sans-serif;
     
     --border-radius: 8px;
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --glass-effect: rgba(20, 20, 20, 0.85); /* Modifié pour header sombre */
-    --glass-border: 1px solid rgba(255, 255, 255, 0.08); /* Modifié */
+    --glass-effect: rgba(245, 240, 230, 0.85);
+    --glass-border: 1px solid rgba(0, 0, 0, 0.08);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -72,13 +72,13 @@ section {
 }
 
 .section-header p {
-    color: rgba(26, 32, 44, 0.8);
+    color: rgba(93, 64, 55, 0.8);
     max-width: 700px;
     margin: 0 auto;
     font-size: 1.1rem;
 }
 
-/* Navigation - Modifié pour version sombre */
+/* Navigation */
 .glass-nav {
     position: fixed;
     top: 0;
@@ -107,7 +107,7 @@ section {
 .logo {
     font-size: 2rem;
     font-weight: 700;
-    color: #F5F0E6; /* Modifié */
+    color: var(--dark-color);
     text-decoration: none;
     position: relative;
     overflow: hidden;
@@ -122,7 +122,7 @@ section {
     width: 0;
     overflow: hidden;
     white-space: nowrap;
-    color: var(--accent-color); /* Modifié */
+    color: var(--accent-color);
     transition: width 0.5s ease;
 }
 
@@ -155,7 +155,7 @@ section {
 }
 
 .nav-link {
-    color: rgba(245, 240, 230, 0.9); /* Modifié */
+    color: var(--dark-color);
     text-decoration: none;
     font-weight: 500;
     position: relative;
@@ -179,8 +179,8 @@ section {
 }
 
 .nav-cta {
-    background: linear-gradient(to right, #3B4C6B, #2C3E50); /* Modifié */
-    color: #F5F0E6; /* Modifié */
+    background: var(--gradient);
+    color: white;
     padding: 10px 20px;
     border-radius: var(--border-radius);
     text-decoration: none;
@@ -192,9 +192,10 @@ section {
 
 .nav-cta:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(42, 67, 101, 0.2);
+    box-shadow: 0 10px 20px rgba(139, 90, 43, 0.2);
 }
 
+/* Menu Hamburger - Version Mobile */
 .hamburger {
     display: none;
     background: none;
@@ -208,7 +209,7 @@ section {
     display: block;
     width: 25px;
     height: 3px;
-    background: #F5F0E6; /* Modifié */
+    background: var(--dark-color);
     margin: 5px 0;
     transition: var(--transition);
 }
@@ -233,7 +234,7 @@ section {
     height: 100%;
     background: url('images/RESTAURANTJAP.png') no-repeat center center;
     background-size: cover;
-    opacity: 0.6;
+    opacity: 0.4;
     z-index: -1;
 }
 
@@ -258,7 +259,7 @@ section {
 .hero-subtitle {
     font-size: 1.2rem;
     margin-bottom: 30px;
-    color: rgba(26, 32, 44, 0.8);
+    color: rgba(93, 64, 55, 0.8);
 }
 
 .hero-buttons {
@@ -286,7 +287,7 @@ section {
 
 .btn-primary:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(42, 67, 101, 0.2);
+    box-shadow: 0 15px 30px rgba(139, 90, 43, 0.2);
 }
 
 .btn-secondary {
@@ -317,7 +318,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #F5F0E6;
+    background: var(--light-color);
     z-index: -1;
 }
 
@@ -342,7 +343,7 @@ section {
 
 .service-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(66, 153, 225, 0.1);
+    box-shadow: 0 15px 30px rgba(139, 90, 43, 0.1);
 }
 
 .service-icon {
@@ -366,7 +367,7 @@ section {
 }
 
 .service-features span {
-    background: rgba(66, 153, 225, 0.1);
+    background: rgba(139, 90, 43, 0.1);
     color: var(--primary-color);
     padding: 5px 10px;
     border-radius: 20px;
@@ -380,6 +381,9 @@ section {
     display: flex;
     align-items: center;
     gap: 50px;
+    padding: 100px 5%;
+    min-width: 320px;
+    overflow: hidden;
 }
 
 .about-bg {
@@ -388,7 +392,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #F5F0E6;
+    background: var(--light-color);
     z-index: -1;
 }
 
@@ -398,7 +402,7 @@ section {
 
 .about-content p {
     margin-bottom: 20px;
-    color: rgba(26, 32, 44, 0.8);
+    color: rgba(93, 64, 55, 0.8);
     font-size: 1.1rem;
     line-height: 1.7;
 }
@@ -489,6 +493,31 @@ section {
     transform: scale(1.2);
 }
 
+/* About Grid */
+.about-grid {
+    position: relative;
+    overflow: hidden;
+}
+
+.about-bg-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/arbrejap.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.about-grid .about-content,
+.about-grid .about-image {
+    position: relative;
+    z-index: 1;
+}
+
 /* Contact Section */
 .contact-container {
     display: flex;
@@ -518,7 +547,7 @@ section {
 .form-group textarea {
     width: 100%;
     padding: 15px;
-    border: 1px solid rgba(26, 32, 44, 0.2);
+    border: 1px solid rgba(93, 64, 55, 0.2);
     border-radius: var(--border-radius);
     font-family: var(--font-main);
     transition: var(--transition);
@@ -529,14 +558,14 @@ section {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(42, 67, 101, 0.2);
+    box-shadow: 0 0 0 2px rgba(139, 90, 43, 0.2);
 }
 
 .form-group label {
     position: absolute;
     left: 15px;
     top: 15px;
-    color: rgba(26, 32, 44, 0.7);
+    color: rgba(93, 64, 55, 0.7);
     transition: var(--transition);
     pointer-events: none;
 }
@@ -587,10 +616,10 @@ section {
     color: var(--primary-color);
 }
 
-/* Footer - Modifié pour version sombre */
+/* Footer */
 .footer {
-    background: #1A1A1A; /* Modifié */
-    color: #F5F0E6; /* Modifié */
+    background: var(--dark-color);
+    color: var(--light-color);
     padding: 50px 0 20px;
 }
 
@@ -620,27 +649,28 @@ section {
 }
 
 .footer-links a {
-    color: rgba(245, 240, 230, 0.8); /* Modifié */
+    color: rgba(245, 240, 230, 0.8);
     text-decoration: none;
     transition: var(--transition);
     font-size: 0.95rem;
 }
 
 .footer-links a:hover {
-    color: var(--accent-color); /* Modifié */
+    color: var(--accent-color);
 }
 
 .footer-bottom {
     text-align: center;
     margin-top: 20px;
     padding-top: 20px;
-    border-top: 1px solid rgba(245, 240, 230, 0.05); /* Ajouté */
+    border-top: 1px solid rgba(245, 240, 230, 0.05);
 }
 
 .footer-bottom p {
     font-size: 0.9rem;
-    color: rgba(245, 240, 230, 0.6); /* Modifié */
+    color: rgba(245, 240, 230, 0.6);
 }
+
 /* Preloader */
 .preloader {
     position: fixed;
@@ -662,6 +692,79 @@ section {
     background: var(--gradient);
     border-radius: 50%;
     animation: spin 2s linear infinite;
+}
+
+/* Cookie Banner */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--dark-color);
+    color: white;
+    padding: 20px;
+    z-index: 9998;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(245, 240, 230, 0.1);
+}
+
+.cookie-banner.show {
+    transform: translateY(0);
+}
+
+.cookie-banner p {
+    margin: 0;
+    flex: 1;
+    min-width: 250px;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.cookie-btn {
+    padding: 8px 15px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.cookie-accept {
+    background: var(--secondary-color);
+    color: var(--dark-color);
+}
+
+.cookie-accept:hover {
+    transform: translateY(-2px);
+}
+
+.cookie-decline {
+    background: transparent;
+    color: var(--light-color);
+    border: 1px solid rgba(245, 240, 230, 0.3);
+}
+
+.cookie-decline:hover {
+    background: rgba(245, 240, 230, 0.05);
+}
+
+.cookie-settings {
+    background: var(--primary-color);
+    color: white;
+}
+
+.cookie-settings:hover {
+    opacity: 0.9;
 }
 
 /* Responsive Design */
@@ -696,17 +799,29 @@ section {
         right: -100%;
         width: 80%;
         height: 100vh;
-        background: white;
+        background: var(--light-color);
         flex-direction: column;
         justify-content: center;
         align-items: center;
         transition: var(--transition);
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         gap: 25px;
+        z-index: 1000;
     }
     
     .nav-links.active {
         right: 0;
+    }
+    
+    .nav-link {
+        color: var(--dark-color) !important;
+        font-size: 1.2rem;
+        padding: 10px 0;
+    }
+    
+    .nav-cta {
+        background: var(--gradient) !important;
+        color: white !important;
     }
     
     .hamburger {
@@ -809,82 +924,6 @@ section {
     }
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-/* Cookie Banner - Modifié pour version sombre */
-.cookie-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #1A1A1A; /* Modifié */
-    color: white;
-    padding: 20px;
-    z-index: 9998;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(245, 240, 230, 0.1); /* Ajouté */
-}
-
-.cookie-banner.show {
-    transform: translateY(0);
-}
-
-.cookie-banner p {
-    margin: 0;
-    flex: 1;
-    min-width: 250px;
-}
-
-.cookie-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.cookie-btn {
-    padding: 8px 15px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    border: none;
-    font-weight: 600;
-    transition: var(--transition);
-}
-
-.cookie-accept {
-    background: var(--secondary-color);
-    color: var(--dark-color);
-}
-
-.cookie-accept:hover {
-    transform: translateY(-2px);
-}
-
-.cookie-decline {
-    background: transparent;
-    color: #F5F0E6; /* Modifié */
-    border: 1px solid rgba(245, 240, 230, 0.3); /* Modifié */
-}
-
-.cookie-decline:hover {
-    background: rgba(245, 240, 230, 0.05); /* Modifié */
-}
-
-.cookie-settings {
-    background: var(--primary-color);
-    color: white;
-}
-
-.cookie-settings:hover {
-    opacity: 0.9;
-}
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
