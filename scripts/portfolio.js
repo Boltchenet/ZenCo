@@ -24,11 +24,19 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         { 
             title: "Chihiro", 
-            description: "Site élégant pour restaurant japonais avec réservation en ligne", 
+            description: "Site élégant pour restaurant japonais avec livraison à domicile", 
             color: "#1a1a2e",
             link: "https://chihiro-vert.vercel.app/",
             featured: true,
-            tags: ["Site vitrine", "Réservation en ligne", "Design moderne"]
+            tags: ["Site vitrine", "Livraison à domicile", "Design moderne"]
+        },
+        { 
+            title: "ADVIN BARBER", 
+            description: "Site moderne pour salon de coiffure avec présentation des services", 
+            color: "#1a1a2e",
+            link: "https://advin-coiffure.vercel.app/",
+            featured: true,
+            tags: ["Site vitrine", "Design moderne", "Coiffure"]
         }
     ];
 
@@ -38,30 +46,31 @@ document.addEventListener('DOMContentLoaded', function() {
     filterContainer.className = 'portfolio-filters';
     
     // Création des filtres
-   function setupFilters() {
-    const filterHTML = `
-        <button class="filter-btn active" data-filter="all">Tous</button>
-        <button class="filter-btn" data-filter="site-vitrine">Site Vitrine</button>
-        <button class="filter-btn" data-filter="menu-digital">Menu Digital</button>
-        <button class="filter-btn" data-filter="reservation-en-ligne">Réservation en ligne</button>
-    `;
-    
-    filterContainer.innerHTML = filterHTML;
-    portfolioGrid.before(filterContainer);
-    
-    // Gestion des clics sur les filtres
-    filterContainer.addEventListener('click', function(e) {
-        if (e.target.classList.contains('filter-btn')) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            e.target.classList.add('active');
-            
-            const filter = e.target.dataset.filter;
-            filterProjects(filter);
-        }
-    });
-}
+    function setupFilters() {
+        const filterHTML = `
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="site-vitrine">Site Vitrine</button>
+            <button class="filter-btn" data-filter="menu-digital">Menu Digital</button>
+            <button class="filter-btn" data-filter="livraison-a-domicile">Livraison à domicile</button>
+            <button class="filter-btn" data-filter="coiffure">Coiffure</button>
+        `;
+        
+        filterContainer.innerHTML = filterHTML;
+        portfolioGrid.before(filterContainer);
+        
+        // Gestion des clics sur les filtres
+        filterContainer.addEventListener('click', function(e) {
+            if (e.target.classList.contains('filter-btn')) {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                e.target.classList.add('active');
+                
+                const filter = e.target.dataset.filter;
+                filterProjects(filter);
+            }
+        });
+    }
 
     // Filtrage des projets
     function filterProjects(filter) {
@@ -77,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-     // Affichage des projets
+    // Affichage des projets
     function displayProjects() {
         portfolioGrid.classList.add('loading');
         
@@ -133,6 +142,18 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span class="visit-link">Visiter le site →</span>
                         </div>
                     `;
+                } else if (item.title === "ADVIN BARBER") {
+                    portfolioItem.innerHTML = `
+                        <div class="portfolio-image-container" style="background-image: url('assets/images/advinbarber.jpg'); background-position: center;"></div>
+                        <div class="portfolio-overlay">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                            <div class="portfolio-tags">
+                                ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                            <span class="visit-link">Visiter le site →</span>
+                        </div>
+                    `;
                 } else {
                     portfolioItem.innerHTML = `
                         <div class="portfolio-image-container" style="background-color: ${item.color};"></div>
@@ -153,7 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
             setupAnimations();
         }, 800);
     }
-
 
     // Gestion des animations
     function setupAnimations() {
